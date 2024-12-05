@@ -4,12 +4,34 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint",
+    "esbuild": "esbuild src/index.ts --bundle --platform=node --outfile=build/index.js --format=esm",
+    "start": "node dist/index.js",
+    "dev:tsc": "tsc --watch --preserveWatchOutput",
+    "dev:node": "node --watch dist/index.js",
+    "dev:esbuild": "npm run esbuild --watch",
+    "dev": "run-p dev:*",
+    "build": "npm run compile && npm run esbuild"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
+    "esbuild": "^0.24.0",
+    "gts": "^6.0.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.6.3"
   }
 }

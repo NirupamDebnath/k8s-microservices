@@ -5,10 +5,10 @@ FROM node:22-alpine
 WORKDIR /usr/src/app
 
 # Copy the application source code
-COPY . .
+COPY ./build/index.js .
 
 # Expose the port the app runs on
 EXPOSE 3000
 
 # Define the command to run the application
-CMD ["node", "app.js"]
+CMD ["node", "index.js"]
