@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import jwksRsa from "jwks-rsa";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -62,7 +62,7 @@ app.post("/auth/token", async (req: Request, res: Response): Promise<void> => {
 
   // Payload and options
   const payload = { username };
-  const options = {
+  const options : SignOptions = {
     algorithm: "RS256",
     keyid: key.kid,
     expiresIn: "1h",
@@ -73,7 +73,7 @@ app.post("/auth/token", async (req: Request, res: Response): Promise<void> => {
     const token = jwt.sign(payload, privateKeyPem, options);
     res.send({ token });
   } catch (error) {
-    res.status(500).send({ error: "Error generating token", details: error.message });
+    res.status(500).send({ error: "Error generating token", details: error });
   }
 });
 
