@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc-a-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-a
+  template:
+    metadata:
+      labels:
+        app: svc-a
+    spec:
+      containers:
+      - name: svc-a
+        image: svc-a:latest
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-a
+spec:
+  selector:
+    app: svc-a
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: svc-a
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-system/default
+  http:
+  - match:
+      - uri:
+          prefix: /
+    route:
+      - destination:
+          host: svc-a
+          port:
+            number: 80
