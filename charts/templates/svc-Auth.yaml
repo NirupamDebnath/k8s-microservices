@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: svc-a-deployment
+  name: svc-auth-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: svc-a
+      app: svc-auth
   template:
     metadata:
       labels:
-        app: svc-a
+        app: svc-auth
     spec:
       containers:
-      - name: svc-a
-        image: svc-a:latest
+      - name: svc-auth
+        image: svc-auth:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
@@ -22,10 +22,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-a
+  name: svc-auth
 spec:
   selector:
-    app: svc-a
+    app: svc-auth
   ports:
   - protocol: TCP
     port: 80
@@ -34,7 +34,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: svc-a
+  name: svc-auth
 spec:
   hosts:
     - "*"
@@ -46,6 +46,6 @@ spec:
           prefix: /
     route:
       - destination:
-          host: svc-a
+          host: svc-auth
           port:
             number: 80

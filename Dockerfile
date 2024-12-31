@@ -5,7 +5,7 @@ FROM node:22-alpine
 WORKDIR /usr/src/app
 
 # Copy the application source code
-COPY ./build/index.js .
+COPY . .
 
 # Expose the port the app runs on
 EXPOSE 3000

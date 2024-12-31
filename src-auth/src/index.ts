@@ -10,6 +10,7 @@ import jose, { JWK } from "node-jose";
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const JWT_SECRET = process.env.JWT_SECRET || "your-secure-secret";
 const JWKS_URI = process.env.JWKS_URI || "http://localhost:3000/.well-known/jwks.json";
+const ISSUER = "http://localhost:3000"
 
 const app = express();
 app.use(cors());
@@ -61,7 +62,7 @@ app.post("/auth/token", async (req: Request, res: Response): Promise<void> => {
   const privateKeyPem = key.toPEM(true);
 
   // Payload and options
-  const payload = { username };
+  const payload = { username, iss: ISSUER };
   const options : SignOptions = {
     algorithm: "RS256",
     keyid: key.kid,
