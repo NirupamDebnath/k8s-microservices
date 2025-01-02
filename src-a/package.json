@@ -12,18 +12,17 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run lint",
-    "esbuild": "esbuild src/index.ts --bundle --platform=node --outfile=build/index.js --format=esm",
     "start": "node dist/index.js",
     "dev:tsc": "tsc --watch --preserveWatchOutput",
     "dev:node": "node --watch dist/index.js",
-    "dev:esbuild": "npm run esbuild --watch",
     "dev": "run-p dev:*",
-    "build": "npm run compile && npm run esbuild"
+    "build": "npm run compile"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "express": "^4.21.1"
   },
   "devDependencies": {
