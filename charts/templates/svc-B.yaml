@@ -1,38 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: svc-a-deployment
+  name: svc-b-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: svc-a
+      app: svc-b
   template:
     metadata:
       labels:
-        app: svc-a
+        app: svc-b
     spec:
       containers:
-      - name: svc-a
-        image: svc-a:latest
+      - name: svc-b
+        image: svc-b:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
         env:
           - name: "PORT"
             value: "3000"
-          - name: "API_B_URL"
-            value: "http://svc-b.default.svc.cluster.local"
-          - name: "API_C_URL"
-            value: "http://svc-c.default.svc.cluster.local"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-a
+  name: svc-b
 spec:
   selector:
-    app: svc-a
+    app: svc-b
   ports:
   - protocol: TCP
     port: 80
@@ -41,7 +37,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: svc-a
+  name: svc-b
 spec:
   hosts:
     - "*"
@@ -50,9 +46,9 @@ spec:
   http:
   - match:
       - uri:
-          prefix: /
+          prefix: /svc-b
     route:
       - destination:
-          host: svc-a
+          host: svc-b
           port:
             number: 80

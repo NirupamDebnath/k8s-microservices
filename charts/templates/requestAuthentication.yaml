@@ -1,0 +1,14 @@
+{{- if .Values.opaEnvoy.enabled }}
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: svc-a
+spec:
+  selector:
+    matchLabels:
+      app: svc-a
+  jwtRules:
+  - issuer: "http://localhost:3000"
+    jwksUri: "http://svc-auth.auth.svc.cluster.local/.well-known/jwks.json"
+    outputPayloadToHeader: "x-jwt-payload"
+{{- end}}

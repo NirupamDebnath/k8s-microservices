@@ -1,0 +1,57 @@
+{
+    "attributes": {
+      "destination": {
+        "address": {
+          "socketAddress": {
+            "address": "10.244.0.38",
+            "portValue": 3000
+          }
+        },
+        "principal": "spiffe://cluster.local/ns/default/sa/default"
+      },
+      "metadataContext": {},
+      "request": {
+        "http": {
+          "headers": {
+            ":authority": "10.96.109.141:80",
+            ":method": "GET",
+            ":path": "/",
+            ":scheme": "http",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjcxbEdpaElxRFBmQmZWTWo4cjhMMDBBZnlvemcxaUVZSHVoc0FCRk5FcDQifQ.eyJ1c2VybmFtZSI6Im5pcnVwYW0iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJpYXQiOjE3Mzg1OTA0ODQsImV4cCI6MTczODU5NDA4NH0.vb5015GAe7CvgWxhAURyJkr74j6SFc_cXaTQZ25G3-fYPOZ3-W9TFhC-SVBcaB736x-Qi2U1EbT_V_egnvOURtborvfxyBYH094LKNMt3MtLvyJAjV6zZBAzGv_3I5giavlAj20WW8BZ52f3I7VqprprwaiBMchv_GRfPfGPHuMwjlzkW9RoF8BkB4OhkW0GwrPV_9p9uWHL0SXAuc3cym4UqTyHgKE3pHpvxXRjX2XsIX7vl6IeZSXKlr-r41xen4JUHBne3vC8bmezlCLR-pDVApDq1C1HRJuAGjFI_oQn7i3DcI4LpmiK4SixoEHsaux4h1UBIxIYgMXNzkIyTw",
+            "cache-control": "no-cache",
+            "postman-token": "2bd95e1f-5e35-4af5-b894-0d735f30b9f6",
+            "user-agent": "PostmanRuntime/7.43.0",
+            "x-envoy-attempt-count": "1",
+            "x-envoy-internal": "true",
+            "x-forwarded-client-cert": "By=spiffe://cluster.local/ns/default/sa/default;Hash=6ae1d5325667fefa677c743f14602616f84630fa9aea862606e75ff17580717a;Subject=\"\";URI=spiffe://cluster.local/ns/istio-system/sa/istio-ingress",
+            "x-forwarded-for": "10.244.0.1",
+            "x-forwarded-proto": "http",
+            "x-request-id": "4ab85785-d697-44ba-a128-eb7fc9d10df9"
+          },
+          "host": "10.96.109.141:80",
+          "id": "15360669638597093881",
+          "method": "GET",
+          "path": "/",
+          "protocol": "HTTP/1.1",
+          "scheme": "http"
+        },
+        "time": {
+          "nanos": 708670000,
+          "seconds": 1738590791
+        }
+      },
+      "routeMetadataContext": {},
+      "source": {
+        "address": {
+          "socketAddress": {
+            "address": "10.244.0.27",
+            "portValue": 53226
+          }
+        },
+        "principal": "spiffe://cluster.local/ns/istio-system/sa/istio-ingress"
+      }
+    }
+}
+  

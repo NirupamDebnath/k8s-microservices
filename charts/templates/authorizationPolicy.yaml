@@ -1,0 +1,27 @@
+{{- if not .Values.opaEnvoy.enabled }}
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: svc-a-allow
+spec:
+  selector:
+    matchLabels:
+      app: svc-a
+  action: DENY
+  rules:
+    - when:
+        - key: request.headers[x-jwt-payload]
+          notValues: ["*"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: svc-a-audit
+spec:
+  selector:
+    matchLabels:
+      app: svc-a
+  action: AUDIT
+  rules:
+  - {}
+{{- end}}
