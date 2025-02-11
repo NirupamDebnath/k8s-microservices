@@ -384,6 +384,9 @@ webhooks:
     namespaceSelector:
       matchLabels:
         opa-istio-injection: enabled
+    objectSelector:
+      matchLabels:
+        opa-istio-injection: enabled
     failurePolicy: Fail
     admissionReviewVersions: ["v1", "v1beta1"]
     sideEffects: None
